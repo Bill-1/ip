@@ -81,24 +81,30 @@ public class Ujin {
                       newTask = new Todo(task);
                       li.add(newTask);
                       System.out.println("\t " + "Got it. I've added this task:\n" + "\t\t" + newTask + '\n');
+                      String size = String.valueOf(li.size());
+                      System.out.println("\t " + "Now you have " + size + " tasks in the list.\n");
                    }
                    if (arr[0].equals("deadline")) {
                       newTask = new Deadline(task, start);
                       li.add(newTask);
                       System.out.println("\t " + "Got it. I've added this task:\n" + "\t\t" + newTask + '\n');
+                      String size = String.valueOf(li.size());
+                      System.out.println("\t " + "Now you have " + size + " tasks in the list.\n");
                    }
                    if (arr[0].equals("event")) {
                       newTask = new Event(task, start, end);
                       li.add(newTask);
                       System.out.println("\t " + "Got it. I've added this task:\n" + "\t\t" + newTask + '\n');
+                      String size = String.valueOf(li.size());
+                      System.out.println("\t " + "Now you have " + size + " tasks in the list.\n");
                    }
-                   String size = String.valueOf(li.size());
-                   System.out.println("\t " + "Now you have " + size + " tasks in the list.\n");
                 }
              }
           }
 
-          System.out.println("\t" + horLine + '\n');
+          if (!text.equals("bye")) {
+             System.out.println("\t" + horLine + '\n');
+          }
        } while(!(text.equals("Bye") || text.equals("bye") || text.equals("bYe") || text.equals("ByE") ||
                text.equals("BYE") || text.equals("BYe") || text.equals("bYE") || text.equals("byE")));
        System.out.println("\t Bye. Hope to see you again soon!\n");
