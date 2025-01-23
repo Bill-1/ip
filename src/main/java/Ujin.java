@@ -53,9 +53,47 @@ public class Ujin {
                       System.out.println("Error!");
                    }
                 } else {
-                   Task newTask = new Task(text);
-                   li.add(newTask);
-                   System.out.println("\t " + "added: " + text + '\n');
+                   boolean flag = true, secondFlag = false;
+                   String start = "", end = "", task = "";
+                   for (int i = 0; i < arr.length; i++) {
+                      String currentText = arr[i];
+                      if (currentText.charAt(0) == '/') {
+                         if (flag) {
+                            flag = false;
+                         } else {
+                            secondFlag = true;
+                         }
+                      }
+                      else {
+                         if (flag && i != 0) {
+                            task += (currentText + " ");
+                         }
+                         if (!flag && !secondFlag) {
+                            start += (" " + currentText);
+                         }
+                         if (secondFlag) {
+                            end += (" " + currentText);
+                         }
+                      }
+                   }
+                   Task newTask;
+                   if (arr[0].equals("todo")) {
+                      newTask = new Todo(task);
+                      li.add(newTask);
+                      System.out.println("\t " + "Got it. I've added this task:\n" + "\t\t" + newTask + '\n');
+                   }
+                   if (arr[0].equals("deadline")) {
+                      newTask = new Deadline(task, start);
+                      li.add(newTask);
+                      System.out.println("\t " + "Got it. I've added this task:\n" + "\t\t" + newTask + '\n');
+                   }
+                   if (arr[0].equals("event")) {
+                      newTask = new Event(task, start, end);
+                      li.add(newTask);
+                      System.out.println("\t " + "Got it. I've added this task:\n" + "\t\t" + newTask + '\n');
+                   }
+                   String size = String.valueOf(li.size());
+                   System.out.println("\t " + "Now you have " + size + " tasks in the list.\n");
                 }
              }
           }
