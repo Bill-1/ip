@@ -1,4 +1,5 @@
-import java.util.Scanner;
+import java.sql.Array;
+import java.util.*;
 public class Ujin {
     public static void main(String[] args) {
        Scanner scanner = new Scanner(System.in);
@@ -17,10 +18,21 @@ public class Ujin {
        System.out.println("\t What can I do for you?\n");
        System.out.println("\t" + horLine);
        String text;
+       List<String> li = new ArrayList<>();
        do {
           text = scanner.nextLine();
           System.out.println("\t" + horLine);
-          System.out.println("\t " + text + '\n');
+          if (text.equals("list")) {
+             for (int i = 0; i < li.size(); i++) {
+                String index = String.valueOf(i + 1);
+                System.out.println("\t " + index + ". " + li.get(i));
+             }
+          }
+          else {
+             li.add(text);
+             System.out.println("\t " + "added: " + text + '\n');
+          }
+
           System.out.println("\t" + horLine + '\n');
        } while(!(text.equals("Bye") || text.equals("bye") || text.equals("bYe") || text.equals("ByE") ||
                text.equals("BYE") || text.equals("BYe") || text.equals("bYE") || text.equals("byE")));
