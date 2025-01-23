@@ -18,19 +18,46 @@ public class Ujin {
        System.out.println("\t What can I do for you?\n");
        System.out.println("\t" + horLine);
        String text;
-       List<String> li = new ArrayList<>();
+       List<Task> li = new ArrayList<>();
        do {
           text = scanner.nextLine();
           System.out.println("\t" + horLine);
           if (text.equals("list")) {
              for (int i = 0; i < li.size(); i++) {
                 String index = String.valueOf(i + 1);
-                System.out.println("\t " + index + ". " + li.get(i));
+                System.out.println("\t " + index + "." + li.get(i));
              }
           }
           else {
-             li.add(text);
-             System.out.println("\t " + "added: " + text + '\n');
+             String[] arr = text.split(" ");
+             if (arr[0].equals("mark")) {
+                int index;
+                try {
+                   index = Integer.parseInt(arr[1]);
+                   li.get(index - 1).markAsDone();
+                   System.out.println("\t Nice! I've marked this task as done:\n");
+                   System.out.println("\t\t" + li.get(index - 1));
+                } catch (Exception e) {
+                   System.out.println("Error!");
+                }
+             }
+             else {
+                if (arr[0].equals("unmark")) {
+                   int index;
+                   try {
+                      index = Integer.parseInt(arr[1]);
+                      li.get(index - 1).unmarkAsDone();
+                      System.out.println("\t OK, I've marked this task as not done yet:\n");
+                      System.out.println("\t\t" + li.get(index - 1));
+                   } catch (Exception e) {
+                      System.out.println("Error!");
+                   }
+                } else {
+                   Task newTask = new Task(text);
+                   li.add(newTask);
+                   System.out.println("\t " + "added: " + text + '\n');
+                }
+             }
           }
 
           System.out.println("\t" + horLine + '\n');
