@@ -30,93 +30,115 @@ public class Ujin {
                    }
                 } else {
                    String[] arr = text.split(" ");
-                   if (arr[0].equals("mark")) {
+                   if (arr[0].equals("delete")){
                       if (arr.length != 2) {
                          throw new UjinException("Oops, it seems you put more or less variables :(");
                       }
                       int index;
                       try {
                          index = Integer.parseInt(arr[1]);
-                         li.get(index - 1).markAsDone();
-                         System.out.println("\t Nice! I've marked this task as done:\n");
-                         System.out.println("\t\t" + li.get(index - 1));
-                      } catch (Exception e) {
+                         Task deletedTask = li.get(index - 1);
+                         li.remove(index - 1);
+                         String size = String.valueOf(li.size());
+                         System.out.println("\t Noted. I've removed this task:\n");
+                         System.out.println("\t\t" + deletedTask + '\n');
+                         System.out.println("\t\tNow you have " + size + " tasks in the list.\n");
+                      }
+                      catch (Exception e) {
                          System.out.println("\t Error!");
                       }
-                   } else {
-                      if (arr[0].equals("unmark")) {
+                   }
+                   else{
+                      if (arr[0].equals("mark")) {
                          if (arr.length != 2) {
                             throw new UjinException("Oops, it seems you put more or less variables :(");
                          }
                          int index;
                          try {
                             index = Integer.parseInt(arr[1]);
-                            li.get(index - 1).unmarkAsDone();
-                            System.out.println("\t OK, I've marked this task as not done yet:\n");
+                            li.get(index - 1).markAsDone();
+                            System.out.println("\t Nice! I've marked this task as done:\n");
                             System.out.println("\t\t" + li.get(index - 1));
                          } catch (Exception e) {
-                            System.out.println("Oops, you should put a number!");
+                            System.out.println("\t Error!");
                          }
                       } else {
-                         boolean flag = true, secondFlag = false;
-                         String start = "", end = "", task = "";
-                         for (int i = 0; i < arr.length; i++) {
-                            String currentText = arr[i];
-                            if (currentText.charAt(0) == '/') {
-                               if (flag) {
-                                  flag = false;
+                         if (arr[0].equals("unmark")) {
+                            if (arr.length != 2) {
+                               throw new UjinException("Oops, it seems you put more or less variables :(");
+                            }
+                            int index;
+                            try {
+                               index = Integer.parseInt(arr[1]);
+                               li.get(index - 1).unmarkAsDone();
+                               System.out.println("\t OK, I've marked this task as not done yet:\n");
+                               System.out.println("\t\t" + li.get(index - 1));
+                            } catch (Exception e) {
+                               System.out.println("Oops, you should put a number!");
+                            }
+                         } else {
+                            boolean flag = true, secondFlag = false;
+                            String start = "", end = "", task = "";
+                            for (int i = 0; i < arr.length; i++) {
+                               String currentText = arr[i];
+                               if (currentText.charAt(0) == '/') {
+                                  if (flag) {
+                                     flag = false;
+                                  } else {
+                                     secondFlag = true;
+                                  }
                                } else {
-                                  secondFlag = true;
-                               }
-                            } else {
-                               if (flag && i != 0) {
-                                  task += (currentText + " ");
-                               }
-                               if (!flag && !secondFlag) {
-                                  start += (" " + currentText);
-                               }
-                               if (secondFlag) {
-                                  end += (" " + currentText);
+                                  if (flag && i != 0) {
+                                     task += (currentText + " ");
+                                  }
+                                  if (!flag && !secondFlag) {
+                                     start += (" " + currentText);
+                                  }
+                                  if (secondFlag) {
+                                     end += (" " + currentText);
+                                  }
                                }
                             }
-                         }
-                         Task newTask;
-                         String size;
-                         switch (arr[0]) {
-                            case "todo":
-                               if (arr.length == 1) {
-                                  throw new UjinException("Oops! There is no task!");
-                               }
-                               newTask = new Todo(task);
-                               li.add(newTask);
-                               System.out.println("\t " + "Got it. I've added this task:\n" + "\t\t" + newTask + '\n');
-                               size = String.valueOf(li.size());
-                               System.out.println("\t " + "Now you have " + size + " tasks in the list.\n");
-                               break;
-                            case "deadline":
-                               if (arr.length == 1) {
-                                  throw new UjinException("Oops! There is no task!");
-                               }
-                               newTask = new Deadline(task, start);
-                               li.add(newTask);
-                               System.out.println("\t " + "Got it. I've added this task:\n" + "\t\t" + newTask + '\n');
-                               size = String.valueOf(li.size());
-                               System.out.println("\t " + "Now you have " + size + " tasks in the list.\n");
-                               break;
-                            case "event":
-                               if (arr.length == 1) {
-                                  throw new UjinException("Oops! There is no task!");
-                               }
-                               newTask = new Event(task, start, end);
-                               li.add(newTask);
-                               System.out.println("\t " + "Got it. I've added this task:\n" + "\t\t" + newTask + '\n');
-                               size = String.valueOf(li.size());
-                               System.out.println("\t " + "Now you have " + size + " tasks in the list.\n");
-                               break;
-                            default:
-                               throw new UjinException("Please check the first word! It should be about the task!");
-                         }
+                            Task newTask;
+                            String size;
+                            switch (arr[0]) {
+                               case "todo":
+                                  if (arr.length == 1) {
+                                     throw new UjinException("Oops! There is no task!");
+                                  }
+                                  newTask = new Todo(task);
+                                  li.add(newTask);
+                                  System.out.println("\t " + "Got it. I've added this task:\n" + "\t\t" + newTask + '\n');
+                                  size = String.valueOf(li.size());
+                                  System.out.println("\t " + "Now you have " + size + " tasks in the list.\n");
+                                  break;
+                               case "deadline":
+                                  if (arr.length == 1) {
+                                     throw new UjinException("Oops! There is no task!");
+                                  }
+                                  newTask = new Deadline(task, start);
+                                  li.add(newTask);
+                                  System.out.println("\t " + "Got it. I've added this task:\n" + "\t\t" + newTask + '\n');
+                                  size = String.valueOf(li.size());
+                                  System.out.println("\t " + "Now you have " + size + " tasks in the list.\n");
+                                  break;
+                               case "event":
+                                  if (arr.length == 1) {
+                                     throw new UjinException("Oops! There is no task!");
+                                  }
+                                  newTask = new Event(task, start, end);
+                                  li.add(newTask);
+                                  System.out.println("\t " + "Got it. I've added this task:\n" + "\t\t" + newTask + '\n');
+                                  size = String.valueOf(li.size());
+                                  System.out.println("\t " + "Now you have " + size + " tasks in the list.\n");
+                                  break;
+                               case "bye":
+                                  break;
+                               default:
+                                  throw new UjinException("Please check the first word! It should be about the task!");
+                            }
 
+                         }
                       }
                    }
                 }
