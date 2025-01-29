@@ -156,7 +156,7 @@ public class Ujin {
             }
         } while (!(text.equals("Bye") || text.equals("bye") || text.equals("bYe") || text.equals("ByE") ||
                 text.equals("BYE") || text.equals("BYe") || text.equals("bYE") || text.equals("byE")));
-        System.out.println("\t Bye. Hope to see you again soon!\n");
+        System.out.println("\t Bye. Hope to see liyou again soon!\n");
         System.out.println("\t" + horLine);
         TaskProcessor.writeTasksToFile(li);
     }

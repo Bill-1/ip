@@ -1,10 +1,12 @@
 import java.io.*;
 import java.nio.file.*;
+import java.time.format.DateTimeFormatter;
 import java.util.*;
 
 public class TaskProcessor {
     protected static String folderPath = "./folder";
     protected static String filePath = "./folder/tasks.txt";
+    protected static DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm");
 
     public static void writeTasksToFile(List<Task> li) {
         boolean firstTime = true;
@@ -76,14 +78,14 @@ public class TaskProcessor {
         if (task instanceof Deadline) {
             text += task.description;
             text += " | ";
-            text += ((Deadline) task).by;
+            text += ((Deadline) task).by.format(formatter);
         }
         if (task instanceof Event) {
             text += task.description;
             text += " | ";
-            text += ((Event) task).start;
+            text += ((Event) task).start.format(formatter);
             text += " | ";
-            text += ((Event) task).end;
+            text += ((Event) task).end.format(formatter);
         }
         return text;
     }
