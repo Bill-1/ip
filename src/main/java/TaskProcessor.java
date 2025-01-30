@@ -4,13 +4,14 @@ import java.time.format.DateTimeFormatter;
 import java.util.*;
 
 public class TaskProcessor {
-    protected static String folderPath = "./folder";
-    protected static String filePath = "./folder/tasks.txt";
+
     protected static DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm");
 
-    public static void writeTasksToFile(List<Task> li) {
+    public static void writeTasksToFile(TaskList taskList, String filePath) {
         boolean firstTime = true;
-        for (Task task : li) {
+        int size = taskList.size();
+        for (int i = 0; i < size; i++) {
+            Task task = taskList.get(i);
             String line = taskToText(task);
             try (FileWriter writer = new FileWriter(filePath, !firstTime)) { // false means overwrite mode
                 writer.write(line + "\n"); // Writing a single line
@@ -21,37 +22,33 @@ public class TaskProcessor {
         }
     }
 
-    public static List<Task> readTasksFromFile() {
+    public static List<Task> readTasksFromFile(String filePath) {
         List<Task> li = new ArrayList<>();
 
-        File folder = new File(folderPath);
-        if (folder.exists() && folder.isDirectory()) {
-            File file = new File(filePath);
-            if (file.exists() && file.isFile()) {
-                try{
-                    List<String> lines = Files.readAllLines(Paths.get(filePath));
-                    for (String line : lines) {
-                        li.add(textToTask(line));
-                    }
-                    return li;
-                } catch (IOException e) {
-                    System.out.println(e.getMessage());
+        File file = new File(filePath);
+        if (file.exists()) {
+            try{
+                List<String> lines = Files.readAllLines(Paths.get(filePath));
+                for (String line : lines) {
+                    li.add(textToTask(line));
                 }
-            }
-            else {
-                try {
-                    Files.createFile(Paths.get(filePath));
-                } catch (IOException e) {
-                    System.out.println(e.getMessage());
-                }
+                return li;
+            } catch (IOException e) {
+                System.out.println(e.getMessage());
             }
         }
         else {
-            Path path = Paths.get(folderPath);
             try {
-                Files.createDirectory(path);
-                Files.createFile(Paths.get(filePath));
-            } catch (IOException e) {
+                if (!file.getParentFile().mkdirs()) {
+                    System.out.println("Error creating folder: " + file.getParent());
+                }
+                else {
+                    if(!file.createNewFile()) {
+                        System.out.println("Error creating file: " + file.getAbsolutePath());
+                    }
+                }
+            }
+            catch (Exception e) {
                 System.out.println(e.getMessage());
             }
         }
