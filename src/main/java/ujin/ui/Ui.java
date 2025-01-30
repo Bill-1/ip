@@ -1,3 +1,7 @@
+package ujin.ui;
+
+import ujin.task.*;
+
 import java.util.Scanner;
 
 public class Ui{

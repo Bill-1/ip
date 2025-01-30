@@ -1,3 +1,5 @@
+package ujin.task;
+
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 
@@ -10,6 +12,14 @@ public class Event extends Task {
         super(description);
         this.start = super.parse(start);
         this.end = super.parse(end);
+    }
+
+    public LocalDateTime start() {
+        return start;
+    }
+
+    public LocalDateTime end() {
+        return end;
     }
 
     @Override

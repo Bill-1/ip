@@ -1,3 +1,5 @@
+package ujin.task;
+
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 
@@ -9,6 +11,10 @@ public class Deadline extends Task {
     public Deadline(String description, String by) {
         super(description);
         this.by = super.parse(by);
+    }
+
+    public LocalDateTime by() {
+        return by;
     }
 
     @Override

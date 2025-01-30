@@ -1,3 +1,5 @@
+package ujin.task;
+
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
@@ -26,6 +28,14 @@ public class Task {
     public String toString() {
         String box = "[" + (this.isDone ? "X" : " ") + "]";
         return (box + ' ' + this.description);
+    }
+
+    public String description() {
+        return this.description;
+    }
+
+    public boolean isDone() {
+        return this.isDone;
     }
 
     public LocalDateTime parse(String date) {
