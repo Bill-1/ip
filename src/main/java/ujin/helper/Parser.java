@@ -6,7 +6,25 @@ import ujin.task.*;
 import ujin.ui.*;
 import ujin.*;
 
+/**
+ * The {@code Parser} class is responsible for parsing user input commands
+ * and returning the appropriate {@link Command} object based on the input.
+ * It can handle various types of commands such as adding tasks, marking tasks,
+ * deleting tasks, and others. This class uses a simple string parsing technique
+ * and splits the command into tokens to determine the action to perform.
+ */
 public class Parser {
+
+    /**
+     * Parses the given command string and returns a corresponding {@link Command}
+     * object. The command string is split into tokens to identify the task type
+     * and create the appropriate {@link Command} subclass instance.
+     *
+     * @param command The command string to parse.
+     * @param ui The {@link Ui} object used to display error messages.
+     * @return A {@link Command} object that corresponds to the parsed command.
+     * @throws UjinException If the command is unrecognized or invalid.
+     */
     public static Command parse(String command, Ui ui) throws UjinException{
         String[] tokens = command.split(" ", 2);
 
@@ -64,6 +82,13 @@ public class Parser {
         return null;
     }
 
+    /**
+     * Helper method that splits a string containing task information into
+     * components based on a specific delimiter.
+     *
+     * @param string The input string to parse.
+     * @return An array of strings containing the task information.
+     */
     public static String[] parseInfo(String string) {
         return string.split(" /\\S+ ");
     }
