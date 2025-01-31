@@ -57,6 +57,9 @@ public class Parser {
         case "bye" -> {
             return new ExitCommand();
         }
+        case "find" -> {
+            return new FindCommand(tokens[1]);
+        }
         default -> {
             throw new UjinException("Please check the first word! It should be about the task!");
         }

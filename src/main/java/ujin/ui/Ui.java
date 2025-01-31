@@ -65,6 +65,15 @@ public class Ui{
         }
     }
 
+    public void findTasks(TaskList taskList) {
+        System.out.println("Here are the matching tasks in your list:\n");
+        int size = taskList.size();
+        for (int i = 0; i < size; i++) {
+            String index = String.valueOf(i + 1);
+            System.out.println(index + "." + taskList.get(i));
+        }
+    }
+
     public void fareWell() {
         System.out.println("Thank you for chatting with " + BOTNAME);
         System.out.println("Bye. Hope to see you again soon!\n");

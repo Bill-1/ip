@@ -5,6 +5,10 @@ import java.util.*;
 public class TaskList {
     protected List<Task> tasks;
 
+    public TaskList() {
+        this.tasks = new ArrayList<Task>();
+    }
+
     public TaskList(List<Task> li) {
         this.tasks = li;
     }
