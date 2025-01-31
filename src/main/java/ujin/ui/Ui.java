@@ -6,8 +6,8 @@ import java.util.Scanner;
 
 public class Ui{
 
-    private final String botName = "Ujin";
-    private final String horLine = "____________________________________________________________";
+    private final String BOTNAME = "Ujin";
+    private final String HORLINE = "____________________________________________________________";
 
     public void showWelcome() {
         String logo =
@@ -18,10 +18,10 @@ public class Ui{
                         "| |  | || |_| |  _| |_  | | \\ |\n" +
                         " \\____/  \\___/  |_____| |_| |_|\n";
         System.out.println("Hello from\n" + logo);
-        System.out.println(horLine);
-        System.out.println("Hello! I'm " + botName);
+        System.out.println(HORLINE);
+        System.out.println("Hello! I'm " + BOTNAME);
         System.out.println("What can I do for you?\n");
-        System.out.println(horLine);
+        System.out.println(HORLINE);
     }
 
     public String readCommand() {
@@ -30,7 +30,7 @@ public class Ui{
     }
 
     public void showLine() {
-        System.out.println(horLine);
+        System.out.println(HORLINE);
     }
 
     public void showError(String error) {
@@ -66,8 +66,8 @@ public class Ui{
     }
 
     public void fareWell() {
-        System.out.println("Thank you for chatting with " + botName);
+        System.out.println("Thank you for chatting with " + BOTNAME);
         System.out.println("Bye. Hope to see you again soon!\n");
-        System.out.println(horLine);
+        System.out.println(HORLINE);
     }
 }

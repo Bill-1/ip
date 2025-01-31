@@ -98,26 +98,26 @@ public class TaskProcessor {
             parts[i] = parts[i].trim();
         }
         switch (parts[0]) {
-            case "T":
-                task = new Todo(parts[2]);
-                if (parts[0].equals("1")) {
-                    task.markAsDone();
-                }
-                break;
-            case "D":
-                task = new Deadline(parts[2], parts[3]);
-                if (parts[0].equals("1")) {
-                    task.markAsDone();
-                }
-                break;
-            case "E":
-                task = new Event(parts[2], parts[3], parts[4]);
-                if (parts[0].equals("1")) {
-                    task.markAsDone();
-                }
-                break;
-            default:
-                task = null;
+        case "T":
+            task = new Todo(parts[2]);
+            if (parts[0].equals("1")) {
+                task.markAsDone();
+            }
+            break;
+        case "D":
+            task = new Deadline(parts[2], parts[3]);
+            if (parts[0].equals("1")) {
+                task.markAsDone();
+            }
+            break;
+        case "E":
+            task = new Event(parts[2], parts[3], parts[4]);
+            if (parts[0].equals("1")) {
+                task.markAsDone();
+            }
+            break;
+        default:
+            task = null;
         }
         return task;
     }

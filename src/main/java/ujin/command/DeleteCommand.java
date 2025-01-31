@@ -5,16 +5,17 @@ import ujin.ui.*;
 
 public class DeleteCommand extends Command {
 
-    private final int index;
+    private final int INDEX;
 
     public DeleteCommand(int index) {
-        this.index = index;
+
+        this.INDEX = index;
     }
 
     @Override
     public void execute(TaskList taskList, Ui ui) {
-        Task task = taskList.get(index - 1);
-        taskList.delete(index - 1);
+        Task task = taskList.get(INDEX - 1);
+        taskList.delete(INDEX - 1);
         int size = taskList.size();
         ui.deletedTask(task, size);
     }
