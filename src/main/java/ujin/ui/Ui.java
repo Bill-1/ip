@@ -125,6 +125,21 @@ public class Ui{
     }
 
     /**
+     * Displays the list of tasks that match a search keyword.
+     * This method prints out each matching task in the provided {@link TaskList}.
+     *
+     * @param taskList The list of tasks to display, containing the tasks that matched the search criteria.
+     */
+    public void findTasks(TaskList taskList) {
+        System.out.println("Here are the matching tasks in your list:\n");
+        int size = taskList.size();
+        for (int i = 0; i < size; i++) {
+            String index = String.valueOf(i + 1);
+            System.out.println(index + "." + taskList.get(i));
+        }
+    }
+
+    /**
      * Displays a farewell message when the program ends.
      * The message includes a thank you note and a goodbye message.
      */

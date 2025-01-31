@@ -15,6 +15,10 @@ public class TaskList {
      */
     protected List<Task> tasks;
 
+    public TaskList() {
+        this.tasks = new ArrayList<Task>();
+    }
+
     /**
      * Constructs a {@link TaskList} with the specified list of tasks.
      *
