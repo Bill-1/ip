@@ -1,10 +1,18 @@
 package ujin.helper;
 
-import java.util.List;
-import ujin.command.*;
-import ujin.task.*;
-import ujin.ui.*;
-import ujin.*;
+import ujin.UjinException;
+import ujin.command.AddCommand;
+import ujin.command.Command;
+import ujin.command.DeleteCommand;
+import ujin.command.ExitCommand;
+import ujin.command.FindCommand;
+import ujin.command.ListCommand;
+import ujin.command.MarkerCommand;
+import ujin.task.Deadline;
+import ujin.task.Event;
+import ujin.task.Task;
+import ujin.task.Todo;
+import ujin.ui.Ui;
 
 /**
  * The {@code Parser} class is responsible for parsing user input commands
@@ -25,7 +33,7 @@ public class Parser {
      * @return A {@link Command} object that corresponds to the parsed command.
      * @throws UjinException If the command is unrecognized or invalid.
      */
-    public static Command parse(String command, Ui ui) throws UjinException{
+    public static Command parse(String command, Ui ui) throws UjinException {
         String[] tokens = command.split(" ", 2);
 
         switch (tokens[0]) {

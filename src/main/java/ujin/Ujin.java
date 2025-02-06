@@ -1,12 +1,11 @@
 package ujin;
 
-import ujin.task.*;
-import ujin.command.*;
-import ujin.ui.*;
-import ujin.helper.*;
-import java.sql.Array;
-import java.util.*;
-import java.io.*;
+import javafx.application.Platform;
+import ujin.command.Command;
+import ujin.helper.Parser;
+import ujin.helper.TaskProcessor;
+import ujin.task.TaskList;
+import ujin.ui.Ui;
 
 /**
  * Represents the main application for managing tasks. The `Ujin` class integrates the user interface (UI),
@@ -29,10 +28,9 @@ public class Ujin {
     /**
      * Constructs a new `Ujin` application with the specified file path for loading and saving tasks.
      * It initializes the UI and loads the task list from the specified file.
-     *
-     * @param filePath The file path where tasks are stored and loaded from.
      */
-    public Ujin(String filePath) {
+    public Ujin() {
+        String filePath = "./data/tasks.txt";
         ui = new Ui();
         this.taskList = new TaskList(TaskProcessor.readTasksFromFile(filePath));
     }
@@ -41,27 +39,28 @@ public class Ujin {
      * Runs the application, displaying the welcome message and continuously reading and processing user commands.
      * The task list is saved to the file when the program shuts down (via a shutdown hook).
      */
-    public void run() {
+    public String run() {
 
         Runtime.getRuntime().addShutdownHook(new Thread(() -> {
             String filePath = "./data/tasks.txt";
             TaskProcessor.writeTasksToFile(taskList, filePath);
         }));
 
-        ui.showWelcome();
-        boolean isExit = false;
-        while (!isExit) {
-            String command = ui.readCommand();
-            ui.showLine();
-            try {
-                Command c = Parser.parse(command, ui);
-                c.execute(taskList, ui);
-                isExit = c.isExit();
-            } catch (UjinException e) {
-                ui.showError(e.getMessage());
+        return ui.showWelcome();
+    }
+
+    public String getResponse(String input) {
+        try{
+            Command c = Parser.parse(input, ui);
+            if (c.isExit()) {
+                Platform.exit();
+                System.exit(0);
             }
-            ui.showLine();
+            return c.execute(taskList, ui);
+        } catch (UjinException e) {
+            ui.showError(e.getMessage());
         }
+        return null;
     }
 
     /**
@@ -70,7 +69,7 @@ public class Ujin {
      * @param args The command-line arguments (not used in this implementation).
      */
     public static void main(String[] args) {
-        new Ujin("./data/tasks.txt").run();
+        System.out.println("Ujin");
     }
 
 }

@@ -1,14 +1,14 @@
 package ujin.command;
 
-import ujin.task.*;
-import ujin.ui.*;
+import ujin.task.TaskList;
+import ujin.ui.Ui;
 
 /**
  * Represents a command to list all tasks from the task list.
  * This class inherits from the {@link Command} class and implements the execute behavior
  * of listing tasks.
  */
-public class ListCommand extends Command{
+public class ListCommand extends Command {
 
     /**
      * Executes the command by listing all the tasks through the UI.
@@ -17,7 +17,7 @@ public class ListCommand extends Command{
      * @param ui       The user interface handler.
      */
     @Override
-    public void execute(TaskList taskList, Ui ui) {
-        ui.showTasks(taskList);
+    public String execute(TaskList taskList, Ui ui) {
+        return ui.showTasks(taskList);
     }
 }

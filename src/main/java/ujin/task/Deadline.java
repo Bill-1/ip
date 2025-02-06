@@ -22,7 +22,7 @@ public class Deadline extends Task {
     /**
      * A {@link DateTimeFormatter} used for formatting and parsing the deadline time.
      */
-    DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm");
+    private DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm");
 
     /**
      * Constructs a {@link Deadline} task with the given description and deadline time.

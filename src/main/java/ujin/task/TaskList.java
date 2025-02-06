@@ -1,6 +1,7 @@
 package ujin.task;
 
-import java.util.*;
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * Represents a list of tasks. This class provides methods for managing the collection

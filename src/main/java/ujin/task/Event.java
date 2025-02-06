@@ -16,12 +16,17 @@ public class Event extends Task {
     /**
      * The {@link LocalDateTime} object representing the start time of the event.
      */
-    protected LocalDateTime start, end;
+    protected LocalDateTime start;
+
+    /**
+     * The {@link LocalDateTime} object representing the end time of the event.
+     */
+    protected LocalDateTime end;
 
     /**
      * A {@link DateTimeFormatter} used for formatting and parsing the start and end times.
      */
-    DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm");
+    private DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm");
 
     /**
      * Constructs an {@link Event} task with the given description, start time, and end time.

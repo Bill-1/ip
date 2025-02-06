@@ -1,7 +1,8 @@
 package ujin.command;
 
-import ujin.task.*;
-import ujin.ui.*;
+import ujin.task.Task;
+import ujin.task.TaskList;
+import ujin.ui.Ui;
 
 /**
  * Represents a command to mark or unmark the task.
@@ -35,15 +36,14 @@ public class MarkerCommand extends Command {
      * @param ui The user interface handler for displaying messages
      */
     @Override
-    public void execute(TaskList taskList, Ui ui) {
+    public String execute(TaskList taskList, Ui ui) {
         Task task = taskList.get(INDEX - 1);
         if (MARKED) {
             task.markAsDone();
-            ui.markTask(task);
-        }
-        else {
+            return ui.markTask(task);
+        } else {
             task.unmarkAsDone();
-            ui.unmarkTask(task);
+            return ui.unmarkTask(task);
         }
     }
 }

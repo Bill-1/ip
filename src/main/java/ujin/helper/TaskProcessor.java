@@ -1,10 +1,19 @@
 package ujin.helper;
 
-import java.io.*;
-import java.nio.file.*;
+import java.io.File;
+import java.io.FileWriter;
+import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Paths;
 import java.time.format.DateTimeFormatter;
-import java.util.*;
-import ujin.task.*;
+import java.util.ArrayList;
+import java.util.List;
+
+import ujin.task.Deadline;
+import ujin.task.Event;
+import ujin.task.Task;
+import ujin.task.TaskList;
+import ujin.task.Todo;
 
 /**
  * The {@code TaskProcessor} class provides utility methods for handling tasks
@@ -59,7 +68,7 @@ public class TaskProcessor {
 
         File file = new File(filePath);
         if (file.exists()) {
-            try{
+            try {
                 List<String> lines = Files.readAllLines(Paths.get(filePath));
                 for (String line : lines) {
                     li.add(textToTask(line));
@@ -68,19 +77,16 @@ public class TaskProcessor {
             } catch (IOException e) {
                 System.out.println(e.getMessage());
             }
-        }
-        else {
+        } else {
             try {
                 if (!file.getParentFile().mkdirs()) {
                     System.out.println("Error creating folder: " + file.getParent());
-                }
-                else {
-                    if(!file.createNewFile()) {
+                } else {
+                    if (!file.createNewFile()) {
                         System.out.println("Error creating file: " + file.getAbsolutePath());
                     }
                 }
-            }
-            catch (Exception e) {
+            } catch (Exception e) {
                 System.out.println(e.getMessage());
             }
         }

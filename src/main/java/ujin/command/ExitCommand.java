@@ -1,8 +1,8 @@
 package ujin.command;
 
-import ujin.ui.*;
-import ujin.task.*;
-import ujin.helper.*;
+import ujin.helper.TaskProcessor;
+import ujin.task.TaskList;
+import ujin.ui.Ui;
 
 /**
  * Represents a command to exit from the system.
@@ -18,10 +18,10 @@ public class ExitCommand extends Command {
      * @param ui       The user interface handler.
      */
     @Override
-    public void execute(TaskList taskList, Ui ui) {
+    public String execute(TaskList taskList, Ui ui) {
         String filePath = "./data/tasks.txt";
         TaskProcessor.writeTasksToFile(taskList, filePath);
-        this.isExit = true;
-        ui.fareWell();
+        super.setExit(true);
+        return ui.fareWell();
     }
 }

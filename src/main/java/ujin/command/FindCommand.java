@@ -12,7 +12,7 @@ import ujin.ui.Ui;
 public class FindCommand extends Command {
 
     private final String KEYWORD;
-    private final TaskList MATCHLIST = new TaskList();
+    private final TaskList MATCH_LIST = new TaskList();
 
     /**
      * Constructor for the FindCommand.
@@ -32,15 +32,15 @@ public class FindCommand extends Command {
      * @param taskList The list of tasks to search through.
      * @param ui The UI instance used to display the results to the user.
      */
-    public void execute(TaskList taskList, Ui ui) {
+    public String execute(TaskList taskList, Ui ui) {
         int size = taskList.size();
         for (int i = 0; i < size; i++) {
             Task task = taskList.get(i);
             String description = task.description();
             if (description.contains(KEYWORD)) {
-                MATCHLIST.add(task);
+                MATCH_LIST.add(task);
             }
         }
-        ui.findTasks(MATCHLIST);
+        return ui.findTasks(MATCH_LIST);
     }
 }

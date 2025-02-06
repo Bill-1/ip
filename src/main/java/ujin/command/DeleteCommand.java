@@ -1,7 +1,8 @@
 package ujin.command;
 
-import ujin.task.*;
-import ujin.ui.*;
+import ujin.task.Task;
+import ujin.task.TaskList;
+import ujin.ui.Ui;
 
 /**
  * Represents a command to delete a task from the task list.
@@ -32,10 +33,10 @@ public class DeleteCommand extends Command {
      * @param ui       The user interface handler
      */
     @Override
-    public void execute(TaskList taskList, Ui ui) {
+    public String execute(TaskList taskList, Ui ui) {
         Task task = taskList.get(INDEX - 1);
         taskList.delete(INDEX - 1);
         int size = taskList.size();
-        ui.deletedTask(task, size);
+        return ui.deletedTask(task, size);
     }
 }

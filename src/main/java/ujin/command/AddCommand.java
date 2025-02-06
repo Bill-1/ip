@@ -1,7 +1,8 @@
 package ujin.command;
 
-import ujin.task.*;
-import ujin.ui.*;
+import ujin.task.Task;
+import ujin.task.TaskList;
+import ujin.ui.Ui;
 
 /**
  * Represents a command to add a task to the task list.
@@ -11,7 +12,7 @@ import ujin.ui.*;
 public class AddCommand extends Command {
 
     /** The task to be added to the task list */
-    Task task;
+    private Task task;
 
     /**
      * Constructs an AddCommand object with the specified task.
@@ -29,9 +30,9 @@ public class AddCommand extends Command {
      * @param ui       The user interface handler
      */
     @Override
-    public void execute(TaskList taskList, Ui ui) {
+    public String execute(TaskList taskList, Ui ui) {
         taskList.add(task);
         int size = taskList.size();
-        ui.addedTask(task, size);
+        return ui.addedTask(task, size);
     }
 }
