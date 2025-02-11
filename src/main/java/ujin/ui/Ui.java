@@ -1,6 +1,9 @@
 package ujin.ui;
 
 import java.util.Scanner;
+import java.util.stream.Collectors;
+import java.util.stream.IntStream;
+import java.util.stream.Stream;
 
 import ujin.task.Task;
 import ujin.task.TaskList;
@@ -131,14 +134,9 @@ public class Ui {
      * @param taskList The list of tasks to be displayed.
      */
     public String showTasks(TaskList taskList) {
-        String message = "";
-        int size = taskList.size();
-        for (int i = 0; i < size; i++) {
-            String index = String.valueOf(i + 1);
-            message += index + ". " + taskList.get(i) + "\n";
-//            System.out.println(index + "." + taskList.get(i));
-        }
-        return message;
+        return IntStream.range(0, taskList.size())
+                .mapToObj(i -> (i + 1) + ". " + taskList.get(i))
+                .collect(Collectors.joining("\n"));
     }
 
     /**
@@ -148,15 +146,12 @@ public class Ui {
      * @param taskList The list of tasks to display, containing the tasks that matched the search criteria.
      */
     public String findTasks(TaskList taskList) {
-        String message = "Here are the matching task(s) in your list:\n";
-//        System.out.println("Here are the matching tasks in your list:\n");
-        int size = taskList.size();
-        for (int i = 0; i < size; i++) {
-            String index = String.valueOf(i + 1);
-            message += index + ". " + taskList.get(i) + "\n";
-//            System.out.println(index + "." + taskList.get(i));
-        }
-        return message;
+        return Stream.concat(
+                        Stream.of("Here are the matching task(s) in your list:"),
+                        IntStream.range(0, taskList.size())
+                                .mapToObj(i -> (i + 1) + ". " + taskList.get(i))
+                )
+                .collect(Collectors.joining("\n")) + "\n";
     }
 
     /**
