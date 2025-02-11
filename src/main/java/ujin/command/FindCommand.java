@@ -34,6 +34,7 @@ public class FindCommand extends Command {
      */
     public String execute(TaskList taskList, Ui ui) {
         int size = taskList.size();
+        assert size >= 0;
         for (int i = 0; i < size; i++) {
             Task task = taskList.get(i);
             String description = task.description();
