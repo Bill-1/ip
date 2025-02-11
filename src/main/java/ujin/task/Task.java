@@ -13,6 +13,11 @@ import java.time.format.DateTimeFormatter;
 public class Task {
 
     /**
+     * The formatter of the time.
+     */
+    DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm");
+
+    /**
      * The description of the task.
      */
     protected String description;
@@ -142,7 +147,27 @@ public class Task {
             }
         }
         date = year + "-" + month + "-" + day + " " + time;
-        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm");
         return LocalDateTime.parse(date, formatter);
+    }
+
+    /**
+     * Returns the string of the date
+     *
+     * @param date The date to be turned.
+     * @return String representing the date.
+     */
+    public String formatTheString(LocalDateTime date) {
+        return " (by: " + date.format(formatter) + ")";
+    }
+
+    /**
+     * Returns the string of a date that has start and end.
+     *
+     * @param start The start of a date.
+     * @param end The end of a date.
+     * @return String representing the start and end of a date.
+     */
+    public String formatTheString(LocalDateTime start, LocalDateTime end) {
+        return "(from: " + start.format(formatter) + " to: " + end.format(formatter) + ")";
     }
 }
