@@ -1,7 +1,9 @@
 package ujin.helper;
 
+import ujin.Contact;
 import ujin.UjinException;
 import ujin.command.AddCommand;
+import ujin.command.AddContactCommand;
 import ujin.command.Command;
 import ujin.command.DeleteCommand;
 import ujin.command.ExitCommand;
@@ -85,6 +87,10 @@ public class Parser {
         }
         case "find" -> {
             return new FindCommand(tokens[1]);
+        }
+        case "add" -> {
+            Contact contact = new Contact(tokens[1], tokens[2]);
+            return new AddContactCommand(contact);
         }
         default -> {
             throw new UjinException("Please check the first word! It should be about the task!");
