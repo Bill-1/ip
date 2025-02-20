@@ -33,21 +33,8 @@ public class Ui {
      * The message includes a horizontal line separator for clarity.
      */
     public String showWelcome() {
-        String logo =
-                " _    _      _   _____   _   _  \n"
-                        + "| |  | |    | | |_   _| | \\ | |\n"
-                        + "| |  | |    | |   | |   |  \\| |\n"
-                        + "| |  | | _  | |   | |   | |\\  |\n"
-                        + "| |  | || |_| |  _| |_  | | \\ |\n"
-                        + " \\____/  \\___/  |_____| |_| |_|\n";
-        String message = "Hello from\n" + logo + HOR_LINE + "\nHello! I'm " + BOT_NAME
+        return HOR_LINE + "\n\nHello! I'm " + BOT_NAME
                 + "\nWhat can I do for you?\n" + HOR_LINE;
-        return message;
-//        System.out.println("Hello from\n" + logo);
-//        System.out.println(HOR_LINE);
-//        System.out.println("Hello! I'm " + BOT_NAME);
-//        System.out.println("What can I do for you?\n");
-//        System.out.println(HOR_LINE);
     }
 
     /**
@@ -86,8 +73,6 @@ public class Ui {
         String message = "Got it. I've added this task:\n" + newTask + "\nNow you have "
                 + size + " task(s) in the list.\n";
         return message;
-//        System.out.println("Got it. I've added this task:\n" + newTask + '\n');
-//        System.out.println("Now you have " + size + " tasks in the list.\n");
     }
 
     /**
@@ -100,8 +85,6 @@ public class Ui {
         String message = "Noted. I've removed this task:\n" + deletedTask + "\nNow you have "
                 + size + " task(s) in the list.\n";
         return message;
-//        System.out.println("Noted. I've removed this task:\n" + deletedTask);
-//        System.out.println("Now you have " + size + " tasks in the list.\n");
     }
 
     /**
@@ -112,8 +95,6 @@ public class Ui {
     public String markTask(Task task) {
         String message = "Nice! I've marked this task as done:\n" + task + "\n";
         return message;
-//        System.out.println("Nice! I've marked this task as done:\n");
-//        System.out.println(task);
     }
 
     /**
@@ -124,8 +105,6 @@ public class Ui {
     public String unmarkTask(Task task) {
         String message = "Ok! I've marked this task as not done:\n" + task + "\n";
         return message;
-//        System.out.println("OK, I've marked this task as not done yet:\n");
-//        System.out.println(task);
     }
 
     /**
@@ -155,15 +134,19 @@ public class Ui {
     }
 
     /**
+     * When the user types wrong command.
+     */
+    public String sayWrongCommand() {
+        return "Wrong command. Please try again. :'(";
+    }
+
+    /**
      * Displays a farewell message when the program ends.
      * The message includes a thank you note and a goodbye message.
      */
     public String fareWell() {
         String message = "Thank you for chatting with " + BOT_NAME
-                + "Bye. Hope to you see you again soon!\n" + HOR_LINE + '\n';
+                + "\nBye. Hope to you see you again soon!\n" + HOR_LINE + '\n';
         return message;
-//        System.out.println("Thank you for chatting with " + BOT_NAME);
-//        System.out.println("Bye. Hope to see you again soon!\n");
-//        System.out.println(HOR_LINE);
     }
 }

@@ -45,7 +45,6 @@ public class Ujin {
             String filePath = "./data/tasks.txt";
             TaskProcessor.writeTasksToFile(taskList, filePath);
         }));
-
         return ui.showWelcome();
     }
 
@@ -70,6 +69,8 @@ public class Ujin {
      */
     public static void main(String[] args) {
         System.out.println("Ujin");
+        Ujin ujin = new Ujin();
+        ujin.run();
     }
 
 }

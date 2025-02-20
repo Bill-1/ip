@@ -10,6 +10,7 @@ import ujin.command.ExitCommand;
 import ujin.command.FindCommand;
 import ujin.command.ListCommand;
 import ujin.command.MarkerCommand;
+import ujin.command.WrongTextCommand;
 import ujin.task.Deadline;
 import ujin.task.Event;
 import ujin.task.Task;
@@ -37,13 +38,18 @@ public class Parser {
      */
     public static Command parse(String command, Ui ui) throws UjinException {
         String[] tokens = command.split(" ", 2);
-
         switch (tokens[0]) {
         case "todo" -> {
+            if (tokens.length != 2) {
+                return new WrongTextCommand();
+            }
             Task newTask = new Todo(tokens[1]);
             return new AddCommand(newTask);
         }
         case "deadline" -> {
+            if (tokens.length != 2) {
+                return new WrongTextCommand();
+            }
             System.out.println(tokens[1]);
             String[] desc = parseInfo(tokens[1]);
             System.out.println(desc[1]);
@@ -51,7 +57,13 @@ public class Parser {
             return new AddCommand(newTask);
         }
         case "event" -> {
+            if (tokens.length != 2) {
+                return new WrongTextCommand();
+            }
             String[] desc = parseInfo(tokens[1]);
+            if (desc.length != 3) {
+                return new WrongTextCommand();
+            }
             Task newTask = new Event(desc[0], desc[1], desc[2]);
             return new AddCommand(newTask);
         }
@@ -60,7 +72,7 @@ public class Parser {
                 int index = Integer.parseInt(tokens[1]);
                 return new MarkerCommand(true, index);
             } catch (Exception e) {
-                System.out.println("\t Error!");
+                return new WrongTextCommand();
             }
         }
         case "unmark" -> {
@@ -69,6 +81,7 @@ public class Parser {
                 return new MarkerCommand(false, index);
             } catch (Exception e) {
                 ui.showError(e.getMessage());
+                return new WrongTextCommand();
             }
         }
         case "delete" -> {
@@ -77,6 +90,7 @@ public class Parser {
                 return new DeleteCommand(index);
             } catch (Exception e) {
                 ui.showError(e.getMessage());
+                return new WrongTextCommand();
             }
         }
         case "list" -> {
@@ -93,10 +107,10 @@ public class Parser {
             return new AddContactCommand(contact);
         }
         default -> {
-            throw new UjinException("Please check the first word! It should be about the task!");
+            return new WrongTextCommand();
+//            throw new UjinException("Please check the first word! It should be about the task!");
         }
         }
-        return null;
     }
 
     /**

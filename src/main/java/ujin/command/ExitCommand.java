@@ -11,6 +11,9 @@ import ujin.ui.Ui;
  */
 public class ExitCommand extends Command {
 
+    public ExitCommand() {
+        super.setExit(true);
+    }
     /**
      * Executes the command by exiting the system and displaying goodbye message through the UI.
      *
@@ -21,7 +24,6 @@ public class ExitCommand extends Command {
     public String execute(TaskList taskList, Ui ui) {
         String filePath = "./data/tasks.txt";
         TaskProcessor.writeTasksToFile(taskList, filePath);
-        super.setExit(true);
         return ui.fareWell();
     }
 }

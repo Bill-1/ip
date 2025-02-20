@@ -20,11 +20,6 @@ public class Deadline extends Task {
     protected LocalDateTime by;
 
     /**
-     * A {@link DateTimeFormatter} used for formatting and parsing the deadline time.
-     */
-    private DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm");
-
-    /**
      * Constructs a {@link Deadline} task with the given description and deadline time.
      * The deadline time is parsed from the provided string using the superclass's
      * {@link Task#parse(String)} method.

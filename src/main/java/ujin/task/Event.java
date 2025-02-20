@@ -24,11 +24,6 @@ public class Event extends Task {
     protected LocalDateTime end;
 
     /**
-     * A {@link DateTimeFormatter} used for formatting and parsing the start and end times.
-     */
-    private DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm");
-
-    /**
      * Constructs an {@link Event} task with the given description, start time, and end time.
      * The start and end times are parsed from the provided strings using the superclass's
      * {@link Task#parse(String)} method.

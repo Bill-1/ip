@@ -104,7 +104,6 @@ public class Task {
         date = date.trim();
 
         String[] parts = date.split("[-/ ]");
-
         String year;
         String month;
         String day;
