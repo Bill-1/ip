@@ -19,7 +19,7 @@ Notice that &lt;time&gt; has to be in format MM/DD.
 * **delete &lt;index&gt;** is for deleting the task.
 * **find &lt;keyword&gt;** is for finding the tasks that has &lt;keyword&gt; in them. 
 
-Note that &lt;index&gt; has to be number and less than the number of tasks in your tasklist.
+Note that &lt;index&gt; is 1-indexed number and has to be less thab or equal to the number of tasks in your tasklist.
 
 Enjoy your app.
 
