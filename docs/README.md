@@ -1,6 +1,6 @@
 # Ujin User Guide
 
-![Alt text](docs/UI.png)
+![Alt text](https://github.com/Bill-1/ip/blob/master/docs/Ui.png)
 
 ## Introduction
 Ujin is a chatbot for marking your activities.
